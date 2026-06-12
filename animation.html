@@ -1148,6 +1148,18 @@ function randomFlicker(){
     },400);
   }
 }
+async function fetchTemplates() {
+  try {
+    const templates = await api.get('/template_list');
+    // ... process templates
+  } catch (error) {
+    // This catches the "Object" containing the 403 error
+    console.error('Failed to fetch templates:', error.message);
+    if (error.code === 403) {
+      showPermissionDeniedUI();
+    }
+  }
+}
 setInterval(randomFlicker, 3000);
 </script>
 </body>
